@@ -1,6 +1,6 @@
 interface Request {
-  head(): any;
-  body(): string;
+  head(): any,
+  body(): string,
 }
 
 export {

@@ -1,6 +1,6 @@
 interface Response {
-  head(): any;
-  body(): string;
+  head(): any,
+  body(): string,
 }
 
 export {
