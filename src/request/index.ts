@@ -1,6 +1,14 @@
 interface Request {
-  head(): any,
+  head(): RequestHead,
   body(): string,
+}
+
+type RequestHead {
+  uri: string,
+  method: string,
+  headers: {
+    [key: string]: string,
+  },
 }
 
 export {
