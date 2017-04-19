@@ -1,7 +1,7 @@
-import { Back } from './index';
+import * as net from 'net';
+import { Back, RawResponse } from './index';
 import { Chunk } from '../chunk';
 import { RqLive } from '../request';
-import { RawResponse } from '../http/RawResponse';
 
 class BkBasic implements Back {
   private chunk: Chunk;

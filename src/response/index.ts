@@ -3,7 +3,7 @@ interface Response {
   body(): string,
 }
 
-type ResponseHead {
+type ResponseHead = {
   status: number,
   headers: {
     [key: string]: string,

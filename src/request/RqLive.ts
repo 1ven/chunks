@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
-import { ParsedRequest } from '../http/ParsedRequest';
-import { Request } from './index';
+import { ParsedRequest } from '../http';
+import { Request, RequestHead } from './index';
 
 class RqLive implements Request {
   private parsed: any;
@@ -10,7 +10,7 @@ class RqLive implements Request {
   }
 
   public head() {
-    return _.omit(this.parsed, ['body']);
+    return _.omit(this.parsed, ['body']) as RequestHead;
   }
 
   public body() {

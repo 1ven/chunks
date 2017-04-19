@@ -1,7 +1,6 @@
 import * as net from 'net';
-import { Front } from './index';
+import { Front, BkBasic } from './index';
 import { Chunk } from '../chunk';
-import { BkBasic } from './BkBasic';
 
 class FtBasic implements Front {
   private chunk: Chunk;

@@ -3,7 +3,7 @@ interface Request {
   body(): string,
 }
 
-type RequestHead {
+type RequestHead = {
   uri: string,
   method: string,
   headers: {
@@ -11,7 +11,10 @@ type RequestHead {
   },
 }
 
+export { RqLive } from './RqLive';
+
 export {
   Request,
+  RequestHead,
 }
 
