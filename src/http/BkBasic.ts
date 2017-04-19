@@ -1,6 +1,7 @@
 import { Back } from './index';
 import { Chunk } from '../chunk';
 import { RqLive } from '../request';
+import { RawResponse } from '../http/RawResponse';
 
 class BkBasic implements Back {
   private chunk: Chunk;
@@ -20,8 +21,8 @@ class BkBasic implements Back {
 
     socket.on('end', () => {
       const res = this.chunk.act(new RqLive(raw));
-      // TODO: Implement raw response getting from Response instance
-      socket.end();
+
+      socket.end(new RawResponse(res).print(), 'utf8');
     });
   }
 }
