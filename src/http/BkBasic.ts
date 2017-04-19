@@ -1,5 +1,6 @@
 import { Back } from './index';
-import { Chunk } from './chunk';
+import { Chunk } from '../chunk';
+import { RqLive } from '../request';
 
 class BkBasic implements Back {
   private chunk: Chunk;
@@ -9,17 +10,16 @@ class BkBasic implements Back {
   }
 
   public accept(socket: net.Socket) {
-    let result = '';
+    let raw = '';
 
     socket.setEncoding('utf8');
 
     socket.on('data', (chunk: string) => {
-      result += chunk;
+      raw += chunk;
     });
 
     socket.on('end', () => {
-      // TODO: Validate HTML 1.1 request
-      // TODO: Implement Request creating, relying on `result` raw request data
+      const req = new RqLive(raw);
       // TODO: Implement Response creating, by providing request to this.chunk.act() method
       // TODO: Implement raw response getting from Response instance
       socket.end();
