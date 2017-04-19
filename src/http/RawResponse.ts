@@ -1,5 +1,5 @@
 import * as http from 'http';
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 
 class RawResponse {
   private res: Response;
