@@ -19,8 +19,7 @@ class BkBasic implements Back {
     });
 
     socket.on('end', () => {
-      const req = new RqLive(raw);
-      // TODO: Implement Response creating, by providing request to this.chunk.act() method
+      const res = this.chunk.act(new RqLive(raw));
       // TODO: Implement raw response getting from Response instance
       socket.end();
     });
