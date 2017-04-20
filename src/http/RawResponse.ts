@@ -12,14 +12,32 @@ class RawResponse {
   public print() {
     const { status, headers } = this.res.head();
     const body = this.res.body();
-    const rawHeaders = _.reduce(headers, (acc, value, key) => (
-      acc + `${key}: ${value}\n`
-    ), '');
 
     return (
-      `HTTP/1.1 ${status} ${http.STATUS_CODES[status]}\n` +
-      rawHeaders + `\n\n` + body
+      this.makeStatusLine(status) +
+      this.makeHeaders(headers) +
+      this.makeBody(body)
     );
+  }
+
+  private makeStatusLine(status: string) {
+    return `HTTP/1.1 ${status} ${http.STATUS_CODES[status]}`;
+  }
+
+  private makeHeaders(headers?) {
+    if (_.isUndefined(headers)) {
+      return '';
+    }
+    return _.reduce(headers, (acc, value, key) => (
+      acc + `${key}: ${value}\n`
+    ), '\n');
+  }
+
+  private makeBody(body: string) {
+    if (body === '') {
+      return '';
+    }
+    return `\n\n${body}`;
   }
 }
 

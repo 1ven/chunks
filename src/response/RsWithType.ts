@@ -19,6 +19,10 @@ class RsWithType implements Response {
   }
 
   public body() {
-    this.origin.body();
+    return this.origin.body();
   }
+}
+
+export {
+  RsWithType,
 }
