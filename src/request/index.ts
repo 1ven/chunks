@@ -6,7 +6,7 @@ interface Request {
 type RequestHead = {
   uri: string,
   method: string,
-  headers: {
+  headers?: {
     [key: string]: string,
   },
 }

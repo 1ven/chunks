@@ -5,11 +5,26 @@ interface Response {
 
 type ResponseHead = {
   status: number,
-  headers: {
+  headers?: {
     [key: string]: string,
   },
 }
 
+function isResponse(arg): arg is Response {
+  return _.isEqual(
+    Object.keys(Object.getPrototypeOf(test)),
+    ['head', 'body'],
+  );
+}
+
+export { RsEmpty } from './RsEmpty';
+export { RsJson } from './RsJson';
+export { RsWithBody } from './RsWithBody';
+export { RsWithStatus } from './RsWithStatus';
+export { RsWithType } from './RsWithType';
+export { RsWrap } from './RsWrap';
+
 export {
   Response,
+  isResponse,
 }
