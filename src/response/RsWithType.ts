@@ -1,25 +1,28 @@
 import * as _ from 'lodash';
-import { Response } from './index';
+import {
+  Response,
+  RsWrap,
+  RsEmpty,
+  RsSimple,
+  isResponse,
+} from './index';
 
-class RsWithType implements Response {
-  private origin: Response;
-  private type: string;
-
-  constructor(res: Response, type: string) {
-    this.origin = res;
-    this.type = type;
-  }
-
-  public head() {
-    return _.merge({}, this.origin.head(), {
-      headers: {
-        'Content-Type': this.type,
-      },
-    });
-  }
-
-  public body() {
-    return this.origin.body();
+class RsWithType extends RsWrap {
+  constructor(type: string);
+  constructor(res: Response, type: string);
+  constructor(a, b?) {
+    if (typeof a === 'string') {
+      new RsWithType(new RsEmpty(), a);
+    } else if (isResponse(a) && typeof b === 'string') {
+      super(new RsSimple(
+        _.merge({}, a.head(), {
+          headers: {
+            'Content-Type': b,
+          },
+        }),
+        a.body(),
+      ));
+    }
   }
 }
 

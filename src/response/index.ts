@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 interface Response {
   head(): ResponseHead,
   body(): string,
@@ -19,6 +21,7 @@ function isResponse(arg): arg is Response {
 
 export { RsEmpty } from './RsEmpty';
 export { RsJson } from './RsJson';
+export { RsSimple } from './RsSimple';
 export { RsWithBody } from './RsWithBody';
 export { RsWithStatus } from './RsWithStatus';
 export { RsWithType } from './RsWithType';
@@ -26,5 +29,6 @@ export { RsWrap } from './RsWrap';
 
 export {
   Response,
+  ResponseHead,
   isResponse,
 }

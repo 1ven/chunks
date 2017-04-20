@@ -11,3 +11,8 @@ class RsEmpty implements Response {
     return '';
   }
 }
+
+export {
+  RsEmpty,
+}
+

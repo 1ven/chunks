@@ -1,23 +1,26 @@
-import { Response } from './index';
+import {
+  Response,
+  RsWrap,
+  RsSimple,
+  RsEmpty,
+  isResponse,
+} from './index';
 
-class RsWithStatus implements Response {
-  private origin: Response;
-  private status: number;
-
-  constructor(res: Response, status: number) {
-    this.origin = res;
-    this.status = status;
-  }
-
-  public head() {
-    return {
-      ...this.origin.head(),
-      status: this.status,
-    };
-  }
-
-  public body() {
-    return this.origin.body();
+class RsWithStatus extends RsWrap {
+  constructor(status: number);
+  constructor(res: Response, status: number);
+  constructor(a, b?) {
+    if (typeof a === 'number') {
+      new RsWithStatus(new RsEmpty(), a);
+    } else if (isResponse(a) && typeof b === 'number') {
+      super(new RsSimple(
+        {
+          ...a.head(),
+          status: b,
+        },
+        a.body(),
+      ));
+    }
   }
 }
 

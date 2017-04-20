@@ -20,7 +20,7 @@ class RawResponse {
     );
   }
 
-  private makeStatusLine(status: string) {
+  private makeStatusLine(status: number) {
     return `HTTP/1.1 ${status} ${http.STATUS_CODES[status]}`;
   }
 
