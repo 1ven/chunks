@@ -11,8 +11,6 @@ type RequestHead = {
   },
 }
 
-export { RqLive } from './RqLive';
-
 export {
   Request,
   RequestHead,

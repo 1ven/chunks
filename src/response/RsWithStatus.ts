@@ -1,17 +1,14 @@
-import {
-  Response,
-  RsWrap,
-  RsSimple,
-  RsEmpty,
-  isResponse,
-} from './index';
+import { Response, isResponse } from './index';
+import { RsWrap } from './RsWrap';
+import { RsEmpty } from './RsEmpty';
+import { RsSimple } from './RsSimple';
 
 class RsWithStatus extends RsWrap {
   constructor(status: number);
   constructor(res: Response, status: number);
   constructor(a, b?) {
     if (typeof a === 'number') {
-      new RsWithStatus(new RsEmpty(), a);
+      return new RsWithStatus(new RsEmpty(), a);
     } else if (isResponse(a) && typeof b === 'number') {
       super(new RsSimple(
         {

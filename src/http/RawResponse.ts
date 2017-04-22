@@ -29,8 +29,8 @@ class RawResponse {
       return '';
     }
     return _.reduce(headers, (acc, value, key) => (
-      acc + `${key}: ${value}\n`
-    ), '\n');
+      acc + `\n${key}: ${value}`
+    ), '');
   }
 
   private makeBody(body: string) {

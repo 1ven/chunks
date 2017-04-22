@@ -1,18 +1,15 @@
 import * as _ from 'lodash';
-import {
-  Response,
-  RsWrap,
-  RsEmpty,
-  RsSimple,
-  isResponse,
-} from './index';
+import { Response, isResponse } from './index';
+import { RsWrap } from './RsWrap';
+import { RsEmpty } from './RsEmpty';
+import { RsSimple } from './RsSimple';
 
 class RsWithType extends RsWrap {
   constructor(type: string);
   constructor(res: Response, type: string);
   constructor(a, b?) {
     if (typeof a === 'string') {
-      new RsWithType(new RsEmpty(), a);
+      return new RsWithType(new RsEmpty(), a);
     } else if (isResponse(a) && typeof b === 'string') {
       super(new RsSimple(
         _.merge({}, a.head(), {

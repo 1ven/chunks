@@ -1,6 +1,7 @@
 import * as net from 'net';
-import { Front, BkBasic } from './index';
+import { Front } from './index';
 import { Chunk } from '../chunk';
+import { BkBasic } from './BkBasic';
 
 class FtBasic implements Front {
   private chunk: Chunk;
@@ -11,14 +12,14 @@ class FtBasic implements Front {
     this.port = port;
   }
 
-  public start() {
+  public start(callback?: Function) {
     const server = net.createServer();
 
     server.on('connection', (socket: net.Socket) => {
       new BkBasic(this.chunk).accept(socket);
     });
 
-    server.listen(this.port);
+    server.listen(this.port, callback);
   }
 }
 

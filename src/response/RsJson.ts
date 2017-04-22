@@ -1,13 +1,10 @@
 import * as _ from 'lodash';
-import {
-  Response,
-  RsEmpty,
-  RsWithBody,
-  RsWithStatus,
-  RsWithType,
-  RsWrap,
-  isResponse,
-} from './index';
+import { Response, isResponse } from './index';
+import { RsWrap } from './RsWrap';
+import { RsEmpty } from './RsEmpty';
+import { RsWithBody } from './RsWithBody';
+import { RsWithStatus } from './RsWithStatus';
+import { RsWithType } from './RsWithType';
 
 class RsJson extends RsWrap {
   constructor(res: Response, json: Json);
@@ -15,11 +12,11 @@ class RsJson extends RsWrap {
   constructor(res: Response);
   constructor(a, b?) {
     if (isResponse(a) && isJson(b)) {
-      new RsJson(
+      return new RsJson(
         new RsWithBody(a, JSON.stringify(b))
       );
     } else if (isJson(a)) {
-      new RsJson(new RsEmpty(), a);
+      return new RsJson(new RsEmpty(), a);
     } else if (isResponse(a)) {
       super(new RsWithType(
         new RsWithStatus(a, 200),
