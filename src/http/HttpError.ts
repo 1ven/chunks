@@ -1,9 +1,11 @@
+import * as http from 'http';
+
 class HttpError {
   private status: number;
   private message: string;
 
   constructor(status: number) {
-    this.message = `HTTP exception with status ${status}`;
+    this.message = http.STATUS_CODES[status];
     this.status = status;
   }
 

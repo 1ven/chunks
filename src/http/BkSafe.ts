@@ -1,6 +1,7 @@
 import * as net from 'net';
 import { Back, HttpResponse, HttpError } from './index';
 import { RsWithStatus } from '../response/RsWithStatus';
+import { RsWithBody } from '../response/RsWithBody';
 
 class BkSafe implements Back {
   private origin: Back;
@@ -14,7 +15,16 @@ class BkSafe implements Back {
       return await this.origin.accept(socket);
     } catch(err) {
       const status = err instanceof HttpError ? err.readStatus() : 500;
-      return await new HttpResponse(new RsWithStatus(status)).send(socket);
+      const withStatus = new RsWithStatus(status);
+      const res = process.env.NODE_ENV === 'production' ? (
+        withStatus
+      ) : (
+        new RsWithBody(
+          withStatus,
+          err.message,
+        )
+      );
+      return await new HttpResponse(res).send(socket);
     }
   }
 }

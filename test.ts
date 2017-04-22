@@ -2,9 +2,9 @@ import { FtBasic, BkBasic, BkSafe, RsJson, HttpError } from './src';
 
 class Page {
   act(req) {
-    /* if (req) { */
-    /*   throw new HttpError(400); */
-    /* } */
+    if (req) {
+      throw new Error('test');
+    }
     return new RsJson(JSON.parse(req.body()));
   }
 }
