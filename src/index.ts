@@ -1,5 +1,8 @@
 // TODO: Make all names shorter, e.x request - req etc
+export { HttpError } from './http/HttpError';
+
 export { BkBasic } from './http/BkBasic';
+export { BkSafe } from './http/BkSafe';
 export { FtBasic } from './http/FtBasic';
 
 export { RsEmpty } from './response/RsEmpty';

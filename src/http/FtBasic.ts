@@ -1,25 +1,29 @@
 import * as net from 'net';
-import { Front } from './index';
-import { Chunk } from '../chunk';
+import { Front, Back, isBack } from './index';
+import { Chunk, isChunk } from '../chunk';
 import { BkBasic } from './BkBasic';
 
 class FtBasic implements Front {
-  private chunk: Chunk;
-  private port: number;
+  private back: Back;
 
-  constructor(chunk: Chunk, port: number) {
-    this.chunk = chunk;
-    this.port = port;
+  constructor(chunk: Chunk);
+  constructor(back: Back);
+  constructor(a) {
+    if (isChunk(a)) {
+      return new FtBasic(new BkBasic(a));
+    } else if (isBack(a)) {
+      this.back = a;
+    }
   }
 
-  public start(callback?: Function) {
+  public start(port: number, callback?: Function) {
     const server = net.createServer();
 
     server.on('connection', (socket: net.Socket) => {
-      new BkBasic(this.chunk).accept(socket);
+      this.back.accept(socket);
     });
 
-    server.listen(this.port, callback);
+    server.listen(port, callback);
   }
 }
 

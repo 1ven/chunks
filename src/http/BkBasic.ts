@@ -1,5 +1,5 @@
 import * as net from 'net';
-import { Back, RawResponse } from './index';
+import { Back, HttpResponse } from './index';
 import { Chunk } from '../chunk';
 import { RqLive } from '../request/RqLive';
 
@@ -11,12 +11,19 @@ class BkBasic implements Back {
   }
 
   public accept(socket: net.Socket) {
-    socket.setEncoding('utf8');
+    return new Promise((resolve, reject) => {
+      socket.setEncoding('utf8');
+      socket.on('data', async (raw: string) => {
+        try {
+          const res = this.chunk.act(new RqLive(raw));
 
-    socket.on('data', (raw: string) => {
-      const res = this.chunk.act(new RqLive(raw));
+          await new HttpResponse(res).send(socket);
 
-      socket.end(new RawResponse(res).print(), 'utf8');
+          resolve();
+        } catch(err) {
+          reject(err);
+        }
+      });
     });
   }
 }

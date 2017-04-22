@@ -5,6 +5,11 @@ interface Chunk {
   act(request: Request): Response,
 }
 
+function isChunk(arg): arg is Chunk {
+  return !!arg.act;
+}
+
 export {
   Chunk,
+  isChunk,
 }

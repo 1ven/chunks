@@ -1,14 +1,18 @@
-import { FtBasic, RsJson } from './src';
+import { FtBasic, BkBasic, BkSafe, RsJson, HttpError } from './src';
 
 class Page {
   act(req) {
-    return new RsJson({
-      'test': 'value',
-    });
+    /* if (req) { */
+    /*   throw new HttpError(400); */
+    /* } */
+    return new RsJson(JSON.parse(req.body()));
   }
 }
 
 new FtBasic(
-  new Page(),
-  3000,
-).start(() => console.log('Server is listening at 3000'));
+  new BkSafe(
+    new BkBasic(
+      new Page(),
+    ),
+  ),
+).start(3000, () => console.log('Server is listening at 3000'));
