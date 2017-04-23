@@ -5,11 +5,9 @@ interface Response {
   body(): string,
 }
 
-type ResponseHead = {
+export type ResponseHead = {
   status: number,
-  headers?: {
-    [key: string]: string,
-  },
+  headers?: JSON,
 }
 
 function isResponse(arg): arg is Response {
@@ -18,6 +16,5 @@ function isResponse(arg): arg is Response {
 
 export {
   Response,
-  ResponseHead,
   isResponse,
 }

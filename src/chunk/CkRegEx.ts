@@ -1,5 +1,6 @@
 import { Chunk } from './index';
 import { Request } from '../request';
+import { Response } from '../response';
 import { HttpError } from '../http';
 
 class CkRegEx implements Chunk {
@@ -11,7 +12,7 @@ class CkRegEx implements Chunk {
     this.chunk = chunk;
   }
 
-  public act(req: Request) {
+  public act(req: Request): Response {
     if (req.head().uri !== this.pathname) {
       throw new HttpError(404);
     }

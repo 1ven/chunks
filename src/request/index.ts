@@ -3,16 +3,13 @@ interface Request {
   body(): string,
 }
 
-type RequestHead = {
+export type RequestHead = {
   uri: string,
   method: string,
-  headers?: {
-    [key: string]: string,
-  },
+  headers?: JSON,
 }
 
 export {
   Request,
-  RequestHead,
 }
 

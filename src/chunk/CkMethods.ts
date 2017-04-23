@@ -1,5 +1,6 @@
 import { Chunk } from './index';
 import { Request } from '../request';
+import { Response } from '../response';
 import { HttpError } from '../http';
 
 class CkMethods implements Chunk {
@@ -11,7 +12,7 @@ class CkMethods implements Chunk {
     this.chunk = chunk;
   }
 
-  public act(req: Request) {
+  public act(req: Request): Response {
     const methods = this.methods.replace(/\s/g, '').split(',');
 
     if (methods.indexOf(req.head().method) === -1) {

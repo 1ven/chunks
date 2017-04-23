@@ -1,4 +1,9 @@
 // TODO: Make all names shorter, e.x request - req etc
+export { Chunk } from './chunk';
+export { Request, RequestHead } from './request';
+export { Response, ResponseHead } from './response';
+export { Front, Back } from './http';
+
 export { HttpError } from './http/HttpError';
 
 export { CkFork } from './chunk/CkFork';

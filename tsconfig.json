@@ -3,7 +3,8 @@
     "outDir": "./lib",
     "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es6"
+    "target": "es6",
+    "declaration": true
   },
   "files": [
     "./modules.d.ts",

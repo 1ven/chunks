@@ -7,8 +7,8 @@ import { RsWithStatus } from './RsWithStatus';
 import { RsWithType } from './RsWithType';
 
 class RsJson extends RsWrap {
-  constructor(res: Response, json: Json);
-  constructor(json: Json);
+  constructor(res: Response, json: JSON);
+  constructor(json: JSON);
   constructor(res: Response);
   constructor(a, b?) {
     if (isResponse(a) && isJson(b)) {
@@ -26,12 +26,8 @@ class RsJson extends RsWrap {
   }
 }
 
-function isJson(arg): arg is Json {
+function isJson(arg): arg is JSON {
   return _.isPlainObject(arg) && _.every(arg, String);
-}
-
-type Json = {
-  [key: string]: string,
 }
 
 export {
