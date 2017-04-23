@@ -1,6 +1,9 @@
 // TODO: Make all names shorter, e.x request - req etc
 export { HttpError } from './http/HttpError';
 
+export { CkFork } from './chunk/CkFork';
+export { CkRegEx } from './chunk/CkRegEx';
+
 export { BkBasic } from './http/BkBasic';
 export { BkSafe } from './http/BkSafe';
 export { FtBasic } from './http/FtBasic';

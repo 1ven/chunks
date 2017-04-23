@@ -1,18 +1,28 @@
-import { FtBasic, BkBasic, BkSafe, RsJson, HttpError } from './src';
+import { FtBasic, BkBasic, BkSafe, RsJson, HttpError, CkFork, CkRegEx } from './src';
 
-class Page {
+class Index {
   act(req) {
-    if (req) {
-      throw new Error('test');
-    }
-    return new RsJson(JSON.parse(req.body()));
+    return new RsJson({
+      page: 'index',
+    });
+  }
+}
+
+class Test {
+  act(req) {
+    return new RsJson({
+      page: 'test',
+    });
   }
 }
 
 new FtBasic(
   new BkSafe(
     new BkBasic(
-      new Page(),
+      new CkFork(
+        new CkRegEx('/', new Index()),
+        new CkRegEx('/test', new Test()),
+      ),
     ),
   ),
 ).start(3000, () => console.log('Server is listening at 3000'));
