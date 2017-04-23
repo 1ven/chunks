@@ -1,4 +1,4 @@
-import { FtBasic, BkBasic, BkSafe, RsJson, HttpError, CkFork, CkRegEx } from './src';
+import { FtBasic, BkBasic, BkSafe, RsJson, HttpError, CkFork, CkRegEx, CkMethods } from './src';
 
 class Index {
   act(req) {
@@ -20,7 +20,7 @@ new FtBasic(
   new BkSafe(
     new BkBasic(
       new CkFork(
-        new CkRegEx('/', new Index()),
+        new CkRegEx('/', new CkMethods('GET, POST', new Index())),
         new CkRegEx('/test', new Test()),
       ),
     ),

@@ -3,6 +3,7 @@ export { HttpError } from './http/HttpError';
 
 export { CkFork } from './chunk/CkFork';
 export { CkRegEx } from './chunk/CkRegEx';
+export { CkMethods } from './chunk/CkMethods';
 
 export { BkBasic } from './http/BkBasic';
 export { BkSafe } from './http/BkSafe';
