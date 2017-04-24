@@ -13,6 +13,8 @@ class FtBasic implements Front {
       return new FtBasic(new BkBasic(a));
     } else if (isBack(a)) {
       this.back = a;
+    } else {
+      throw new Error('Wrong arguments');
     }
   }
 

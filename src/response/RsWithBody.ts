@@ -11,6 +11,8 @@ class RsWithBody extends RsWrap {
       return new RsWithBody(new RsEmpty(), a);
     } else if (isResponse(a) && typeof b === 'string') {
       super(new RsSimple(a.head(), b));
+    } else {
+      throw new Error('Wrong arguments');
     }
   }
 }

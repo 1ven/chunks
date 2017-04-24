@@ -11,7 +11,7 @@ export type ResponseHead = {
 }
 
 function isResponse(arg): arg is Response {
-  return !!arg.head && !!arg.body;
+  return !_.isPlainObject(arg) && !!arg.head && !!arg.body;
 }
 
 export {

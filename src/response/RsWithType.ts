@@ -20,6 +20,8 @@ class RsWithType extends RsWrap {
         }),
         a.body(),
       ));
+    } else {
+      throw new Error('Wrong arguments');
     }
   }
 }

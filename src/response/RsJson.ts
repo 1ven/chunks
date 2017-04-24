@@ -22,6 +22,8 @@ class RsJson extends RsWrap {
         new RsWithStatus(a, 200),
         'json',
       ));
+    } else {
+      throw new Error('Wrong arguments');
     }
   }
 }
