@@ -2,7 +2,7 @@ import { Request } from '../request';
 import { Response } from '../response';
 
 interface Chunk {
-  act(request: Request): Response,
+  act(request: Request): Promise<Response>,
 }
 
 function isChunk(arg): arg is Chunk {

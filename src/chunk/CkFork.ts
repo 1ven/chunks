@@ -10,7 +10,7 @@ class CkFork implements Chunk {
     this.chunks = chunks;
   }
 
-  public act(req: Request): Response {
+  public act(req: Request): Promise<Response> {
     for (let chunk of this.chunks) {
       try {
         return chunk.act(req);

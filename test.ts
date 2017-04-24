@@ -2,17 +2,19 @@ import { FtBasic, BkBasic, BkSafe, RsJson, HttpError, CkFork, CkRegEx, CkMethods
 
 class Index {
   act(req) {
-    return new RsJson({
-      page: 'index',
+    return new Promise((resolve) => {
+      resolve(new RsJson({
+        page: 'index',
+      }));
     });
   }
 }
 
 class Test {
   act(req) {
-    return new RsJson({
+    return Promise.resolve(new RsJson({
       page: 'test',
-    });
+    }));
   }
 }
 

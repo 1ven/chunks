@@ -15,7 +15,7 @@ class BkBasic implements Back {
       socket.setEncoding('utf8');
       socket.on('data', async (raw: string) => {
         try {
-          const res = this.chunk.act(new RqLive(raw));
+          const res = await this.chunk.act(new RqLive(raw));
 
           await new HttpResponse(res).send(socket);
 

@@ -5,6 +5,6 @@ declare class CkMethods implements Chunk {
     private methods;
     private chunk;
     constructor(methods: string, chunk: Chunk);
-    act(req: Request): Response;
+    act(req: Request): Promise<Response>;
 }
 export { CkMethods };

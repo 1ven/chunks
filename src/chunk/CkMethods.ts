@@ -12,7 +12,7 @@ class CkMethods implements Chunk {
     this.chunk = chunk;
   }
 
-  public act(req: Request): Response {
+  public act(req: Request): Promise<Response> {
     const methods = this.methods.replace(/\s/g, '').split(',');
 
     if (methods.indexOf(req.head().method) === -1) {
