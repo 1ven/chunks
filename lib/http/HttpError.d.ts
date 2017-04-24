@@ -1,7 +1,6 @@
 declare class HttpError {
-    private status;
-    private message;
+    status: number;
+    message: string;
     constructor(status: number);
-    readStatus(): number;
 }
 export { HttpError };
