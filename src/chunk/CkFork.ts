@@ -16,7 +16,7 @@ class CkFork implements Chunk {
         return chunk.act(req);
       } catch(err) {
         if (!(err instanceof HttpError) ||
-          err.readStatus() !== 404) {
+          err.status !== 404) {
           throw err;
         }
       }
