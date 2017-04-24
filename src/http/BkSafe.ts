@@ -15,14 +15,12 @@ class BkSafe implements Back {
       return await this.origin.accept(socket);
     } catch(err) {
       const status = err instanceof HttpError ? err.readStatus() : 500;
+      const body = err instanceof HttpError ? err.message : err.message + '\n' + err.stack;
       const withStatus = new RsWithStatus(status);
       const res = process.env.NODE_ENV === 'production' ? (
         withStatus
       ) : (
-        new RsWithBody(
-          withStatus,
-          err.message,
-        )
+        new RsWithBody(withStatus, body)
       );
       return await new HttpResponse(res).send(socket);
     }
