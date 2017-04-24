@@ -29,7 +29,7 @@ class RsJson extends RsWrap {
 }
 
 function isJson(arg): arg is Json {
-  return _.isPlainObject(arg);
+  return (_.isArray(arg) && _.every(arg, _.isPlainObject)) || _.isPlainObject(arg);
 }
 
 export type Json = {
