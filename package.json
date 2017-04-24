@@ -8,7 +8,8 @@
     "lint": "tslint --project .",
     "clean": "rimraf ./lib",
     "test": "mocha --compilers ts:ts-node/register --recursive -R min  ./tests",
-    "preversion": "npm run build && git push && git push --tags"
+    "preversion": "npm run build",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
