@@ -17,9 +17,9 @@ class RsWithStatus extends RsWrap {
         },
         a.body(),
       ));
+    } else {
+      throw new Error('Wrong arguments');
     }
-  } else {
-    throw new Error('Wrong arguments');
   }
 }
 
