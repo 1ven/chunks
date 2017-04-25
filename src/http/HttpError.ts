@@ -4,8 +4,8 @@ class HttpError {
   public status: number;
   public message: string;
 
-  constructor(status: number) {
-    this.message = http.STATUS_CODES[status];
+  constructor(status: number, message?: string) {
+    this.message = message || http.STATUS_CODES[status];
     this.status = status;
   }
 }
