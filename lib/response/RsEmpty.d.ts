@@ -3,6 +3,6 @@ declare class RsEmpty implements Response {
     head(): {
         status: number;
     };
-    body(): string;
+    body(): any;
 }
 export { RsEmpty };

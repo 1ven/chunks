@@ -1,7 +1,7 @@
-import { Response } from './index';
 import { RsWrap } from './RsWrap';
+import { Response, ResponseBody } from './index';
 declare class RsWithBody extends RsWrap {
-    constructor(body: string);
-    constructor(res: Response, body: string);
+    constructor(body: ResponseBody);
+    constructor(res: Response, body: ResponseBody);
 }
 export { RsWithBody };

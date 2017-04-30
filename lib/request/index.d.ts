@@ -1,3 +1,4 @@
+import { PlainObject } from '../types';
 interface Request {
     head(): RequestHead;
     body(): string;
@@ -5,6 +6,6 @@ interface Request {
 export declare type RequestHead = {
     uri: string;
     method: string;
-    headers?: JSON;
+    headers?: PlainObject;
 };
 export { Request };

@@ -1,9 +1,11 @@
-import { Response, ResponseHead } from './index';
+import { Response, ResponseHead, ResponseBody } from './index';
 declare class RsSimple implements Response {
     private h;
     private b;
-    constructor(head: ResponseHead, body: string);
+    constructor(head: ResponseHead, body: ResponseBody);
     head(): ResponseHead;
-    body(): string;
+    body(): {
+        [key: string]: any;
+    };
 }
 export { RsSimple };

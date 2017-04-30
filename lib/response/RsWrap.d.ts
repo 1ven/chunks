@@ -4,8 +4,12 @@ declare class RsWrap implements Response {
     constructor(res: Response);
     head(): {
         status: number;
-        headers?: JSON;
+        headers?: {
+            [key: string]: any;
+        };
     };
-    body(): string;
+    body(): {
+        [key: string]: any;
+    };
 }
 export { RsWrap };

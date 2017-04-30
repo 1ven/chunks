@@ -5,6 +5,6 @@ declare class RawResponse {
     print(): string;
     private makeStatusLine(status);
     private makeHeaders(headers?);
-    private makeBody(body);
+    private makeBody(body, rt);
 }
 export { RawResponse };

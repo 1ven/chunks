@@ -4,6 +4,6 @@ import { Response } from '../response';
 declare class CkFork implements Chunk {
     private chunks;
     constructor(...chunks: Chunk[]);
-    act(req: Request): Promise<Response>;
+    act(req: Request): Promise<Response> | void;
 }
 export { CkFork };

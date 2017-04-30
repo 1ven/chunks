@@ -5,6 +5,6 @@ declare class CkRegEx implements Chunk {
     private pathname;
     private chunk;
     constructor(pathname: string, chunk: Chunk);
-    act(req: Request): Promise<Response>;
+    act(req: Request): Promise<Response> | void;
 }
 export { CkRegEx };
