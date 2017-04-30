@@ -8,7 +8,7 @@ class RsEmpty implements Response {
   }
 
   public body() {
-    return '';
+    return null;
   }
 }
 

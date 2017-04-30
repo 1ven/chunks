@@ -1,4 +1,5 @@
 import * as net from 'net';
+import { Response } from '../response';
 import { Back, HttpResponse } from './index';
 import { Chunk } from '../chunk';
 import { RqLive } from '../request/RqLive';
@@ -16,8 +17,9 @@ class BkBasic implements Back {
       socket.on('data', async (raw: string) => {
         try {
           const res = await this.chunk.act(new RqLive(raw));
+          // check somewhere if res is actual response
 
-          await new HttpResponse(res).send(socket);
+          await new HttpResponse(res as Response).send(socket);
 
           resolve();
         } catch(err) {

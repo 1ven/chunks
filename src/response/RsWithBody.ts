@@ -1,15 +1,21 @@
-import { Response, isResponse } from './index';
+import * as _ from 'lodash';
 import { RsWrap } from './RsWrap';
 import { RsEmpty } from './RsEmpty';
 import { RsSimple } from './RsSimple';
+import {
+  Response,
+  ResponseBody,
+  isResponse,
+  isResponseBody,
+} from './index';
 
 class RsWithBody extends RsWrap {
-  constructor(body: string);
-  constructor(res: Response, body: string);
+  constructor(body: ResponseBody);
+  constructor(res: Response, body: ResponseBody);
   constructor(a, b?) {
-    if (typeof a === 'string') {
+    if (isResponseBody(a)) {
       return new RsWithBody(new RsEmpty(), a);
-    } else if (isResponse(a) && typeof b === 'string') {
+    } else if (isResponse(a) && isResponseBody(b)) {
       super(new RsSimple(a.head(), b));
     } else {
       throw new Error('Wrong arguments');

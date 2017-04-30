@@ -1,6 +1,8 @@
 import * as http from 'http';
 import * as _ from 'lodash';
-import { Response } from '../response';
+import { isPlainObject } from '../types';
+import { Response, ResponseBody } from '../response';
+import { JsonBody, XmlBody } from './body';
 
 class RawResponse {
   private res: Response;
@@ -16,7 +18,7 @@ class RawResponse {
     return (
       this.makeStatusLine(status) +
       this.makeHeaders(headers) +
-      this.makeBody(body)
+      this.makeBody(body, headers['Content-Type'])
     );
   }
 
@@ -33,11 +35,17 @@ class RawResponse {
     ), '');
   }
 
-  private makeBody(body: string) {
-    if (body === '') {
+  private makeBody(body: ResponseBody, rt: string) {
+    const types = {
+      'json': JsonBody,
+      'xml': XmlBody,
+    };
+
+    if (!isPlainObject(body) || _.keys(types).indexOf(rt) === -1) {
       return '';
     }
-    return `\n\n${body}`;
+
+    return `\n\n${new types[rt](body).print()}`;
   }
 }
 

@@ -12,7 +12,7 @@ class CkRegEx implements Chunk {
     this.chunk = chunk;
   }
 
-  public act(req: Request): Promise<Response> {
+  public act(req: Request): Promise<Response> | void {
     if (req.head().uri !== this.pathname) {
       throw new HttpError(404);
     }
