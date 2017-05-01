@@ -24,6 +24,7 @@ export { RsWithStatus } from './response/RsWithStatus';
 export { RsWithType } from './response/RsWithType';
 
 export { RqLive } from './request/RqLive';
+export { RqWithHead } from './request/RqWithHead';
 
 export { PrJson } from './request/parsed/PrJson';
 

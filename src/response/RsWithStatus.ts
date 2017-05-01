@@ -10,6 +10,7 @@ class RsWithStatus extends RsWrap {
     if (typeof a === 'number') {
       return new RsWithStatus(new RsEmpty(), a);
     } else if (isResponse(a) && typeof b === 'number') {
+      // TODO: use RsWithHead like RqWithHead?
       super(new RsSimple(
         {
           ...a.head(),

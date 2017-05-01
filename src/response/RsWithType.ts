@@ -11,7 +11,7 @@ class RsWithType extends RsWrap {
     if (typeof a === 'string') {
       return new RsWithType(new RsEmpty(), a);
     } else if (isResponse(a) && typeof b === 'string') {
-      // Use RsWithHeaders
+      // TODO: use RsWithHead like RqWithHead
       super(new RsSimple(
         _.merge({}, a.head(), {
           headers: {
