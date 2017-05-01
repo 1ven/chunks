@@ -4,12 +4,16 @@ import { Response } from '../response';
 import { HttpError } from '../http';
 
 class CkRegEx implements Chunk {
-  constructor(private pathname: string, private chunk: Chunk) {}
+  constructor(private regex: string, private chunk: Chunk) {}
 
   public act(req: Request): Promise<Response> | void {
-    if (req.head().uri !== this.pathname) {
+    const { uri } = req.head();
+    const str = uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri;
+
+    if (!this.regex.test(str) {
       throw new HttpError(404);
     }
+
     return this.chunk.act(req);
   }
 }
