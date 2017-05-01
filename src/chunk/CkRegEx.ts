@@ -4,13 +4,7 @@ import { Response } from '../response';
 import { HttpError } from '../http';
 
 class CkRegEx implements Chunk {
-  private pathname: string;
-  private chunk: Chunk;
-
-  constructor(pathname: string, chunk: Chunk) {
-    this.pathname = pathname;
-    this.chunk = chunk;
-  }
+  constructor(private pathname: string, private chunk: Chunk) {}
 
   public act(req: Request): Promise<Response> | void {
     if (req.head().uri !== this.pathname) {

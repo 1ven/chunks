@@ -5,11 +5,7 @@ import { Chunk } from '../chunk';
 import { RqLive } from '../request/RqLive';
 
 class BkBasic implements Back {
-  private chunk: Chunk;
-
-  constructor(chunk: Chunk) {
-    this.chunk = chunk;
-  }
+  constructor(private chunk: Chunk) {}
 
   public accept(socket: net.Socket) {
     return new Promise((resolve, reject) => {

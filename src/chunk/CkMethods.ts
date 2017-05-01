@@ -4,13 +4,7 @@ import { Response } from '../response';
 import { HttpError } from '../http';
 
 class CkMethods implements Chunk {
-  private methods: string;
-  private chunk: Chunk;
-
-  constructor(methods: string, chunk: Chunk) {
-    this.methods = methods;
-    this.chunk = chunk;
-  }
+  constructor(private methods: string, private chunk: Chunk) {}
 
   public act(req: Request): Promise<Response> | void {
     const methods = this.methods.replace(/\s/g, '').split(',');

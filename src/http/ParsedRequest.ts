@@ -2,11 +2,7 @@
 import * as parser from 'http-string-parser';
 
 class ParsedRequest {
-  private raw: string;
-
-  constructor(raw: string) {
-    this.raw = raw;
-  }
+  constructor(private raw: string) {}
 
   public print() {
     return parser.parseRequest(this.raw);

@@ -4,11 +4,7 @@ import { Response, ResponseBody } from '../response';
 import { JsonBody, XmlBody, RawBody } from './body';
 
 class RawResponse {
-  private res: Response;
-
-  constructor(res: Response) {
-    this.res = res;
-  }
+  constructor(private res: Response) {}
 
   public print() {
     const { status, headers } = this.res.head();

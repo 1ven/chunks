@@ -3,11 +3,7 @@ import { Request } from '../index';
 import { HttpError } from '../../http';
 
 class PrJson implements Parsed {
-  private req: Request;
-
-  constructor(req: Request) {
-    this.req = req;
-  }
+  constructor(private req: Request) {}
 
   public content() {
     try {

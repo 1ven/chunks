@@ -2,11 +2,7 @@ import { PlainData } from '../../types';
 import { Body } from './index';
 
 class JsonBody implements Body {
-  private data: PlainData;
-
-  constructor(data: PlainData) {
-    this.data = data;
-  }
+  constructor(private data: PlainData) {}
 
   print() {
     if (!isJson(this.data)) {

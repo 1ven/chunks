@@ -4,11 +4,7 @@ import { RsWithStatus } from '../response/RsWithStatus';
 import { RsWithBody } from '../response/RsWithBody';
 
 class BkSafe implements Back {
-  private origin: Back;
-
-  constructor(back: Back) {
-    this.origin = back;
-  }
+  constructor(private origin: Back) {}
 
   public async accept(socket: net.Socket) {
     try {

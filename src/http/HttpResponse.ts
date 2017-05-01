@@ -3,11 +3,7 @@ import { Response } from '../response';
 import { RawResponse } from './index';
 
 class HttpResponse {
-  private res: Response;
-
-  constructor(res: Response) {
-    this.res = res;
-  }
+  constructor(private res: Response) {}
 
   public send(socket: net.Socket) {
     return new Promise((resolve, reject) => {
