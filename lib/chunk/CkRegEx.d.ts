@@ -4,7 +4,7 @@ import { Response } from '../response';
 declare class CkRegEx implements Chunk {
     private regex;
     private chunk;
-    constructor(regex: string, chunk: Chunk);
+    constructor(regex: RegExp, chunk: Chunk);
     act(req: Request): Promise<Response> | void;
 }
 export { CkRegEx };
