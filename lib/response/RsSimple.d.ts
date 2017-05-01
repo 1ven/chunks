@@ -4,7 +4,7 @@ declare class RsSimple implements Response {
     private b;
     constructor(head: ResponseHead, body: ResponseBody);
     head(): ResponseHead;
-    body(): {
+    body(): string | number | any[] | {
         [key: string]: any;
     };
 }

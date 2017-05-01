@@ -19,4 +19,4 @@ export { RsWithStatus } from './response/RsWithStatus';
 export { RsWithType } from './response/RsWithType';
 export { RqLive } from './request/RqLive';
 export { PrJson } from './request/parsed/PrJson';
-export { PlainObject } from './types';
+export { PlainObject, PlainData } from './types';

@@ -8,7 +8,7 @@ declare class RsWrap implements Response {
             [key: string]: any;
         };
     };
-    body(): {
+    body(): string | number | any[] | {
         [key: string]: any;
     };
 }
