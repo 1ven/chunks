@@ -4,7 +4,7 @@ import { Response } from '../response';
 import { HttpError } from '../http';
 
 class CkRegEx implements Chunk {
-  constructor(private regex: string, private chunk: Chunk) {}
+  constructor(private regex: RegExp, private chunk: Chunk) {}
 
   public act(req: Request): Promise<Response> | void {
     const { uri } = req.head();
