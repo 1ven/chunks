@@ -10,7 +10,7 @@ class CkRegEx implements Chunk {
     const { uri } = req.head();
     const str = uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri;
 
-    if (!this.regex.test(str) {
+    if (!this.regex.test(str)) {
       throw new HttpError(404);
     }
 
