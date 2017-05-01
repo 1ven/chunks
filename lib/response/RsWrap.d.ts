@@ -1,7 +1,7 @@
 import { Response } from './index';
 declare class RsWrap implements Response {
     private origin;
-    constructor(res: Response);
+    constructor(origin: Response);
     head(): {
         status: number;
         headers?: {
