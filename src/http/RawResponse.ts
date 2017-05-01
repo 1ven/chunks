@@ -1,6 +1,5 @@
 import * as http from 'http';
 import * as _ from 'lodash';
-import { isPlainObject } from '../types';
 import { Response, ResponseBody } from '../response';
 import { JsonBody, XmlBody } from './body';
 
@@ -41,7 +40,7 @@ class RawResponse {
       'xml': XmlBody,
     };
 
-    if (!isPlainObject(body) || _.keys(types).indexOf(rt) === -1) {
+    if (_.isNull(body) || _.keys(types).indexOf(rt) === -1) {
       return '';
     }
 

@@ -1,10 +1,10 @@
-import { PlainObject } from '../../types';
+import { PlainData } from '../../types';
 import { Body } from './index';
 
 class XmlBody implements Body {
-  private data: PlainObject;
+  private data: PlainData;
 
-  constructor(data: PlainObject) {
+  constructor(data: PlainData) {
     this.data = data;
   }
 
