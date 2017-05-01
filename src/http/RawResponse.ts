@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as _ from 'lodash';
 import { Response, ResponseBody } from '../response';
-import { JsonBody, XmlBody } from './body';
+import { JsonBody, XmlBody, RawBody } from './body';
 
 class RawResponse {
   private res: Response;
@@ -17,7 +17,7 @@ class RawResponse {
     return (
       this.makeStatusLine(status) +
       this.makeHeaders(headers) +
-      this.makeBody(body, headers['Content-Type'])
+      this.makeBody(body)
     );
   }
 
@@ -34,17 +34,26 @@ class RawResponse {
     ), '');
   }
 
-  private makeBody(body: ResponseBody, rt: string) {
+  private makeBody(body: ResponseBody) {
+    const format = (s: string) => `\n\n${s}`;
+    const { headers } = this.res.head();
+    const ct = headers && headers['Content-Type'];
     const types = {
       'json': JsonBody,
       'xml': XmlBody,
     };
 
-    if (_.isNull(body) || _.keys(types).indexOf(rt) === -1) {
+    if (_.isNull(body)) {
       return '';
     }
 
-    return `\n\n${new types[rt](body).print()}`;
+    if (ct && _.keys(types).indexOf(ct) !== -1) {
+      return format(
+        new types[ct](body).print()
+      );
+    }
+
+    return format(new RawBody(body).print());
   }
 }
 
