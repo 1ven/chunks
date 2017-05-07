@@ -34,9 +34,12 @@ new FtBasic(
     new BkBasic(
       new CkFork(
         new CkRoute('/', new CkMethods('GET, POST', new Index())),
-        new CkRoute('/test/:id*', (
-          new CkRoute('/hello', new Test())
+        new CkRoute('/tickets*', new CkFork(
+          new CkRoute('/', new Test())
         )),
+        /* new CkRoute('/test/:id*', ( */
+        /*   new CkRoute('/hello', new Test()) */
+        /* )), */
       ),
     ),
   ),

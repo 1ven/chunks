@@ -4,6 +4,7 @@ import { Request } from '../request';
 import { Response } from '../response';
 import { HttpError } from '../http';
 import { Route, RouteParams } from '../modules/Route';
+import { SlashedString } from '../modules/SlashedString';
 import { RqMatched, RouteRequest, isRouteRequest } from '../request/RqMatched';
 
 export class CkRoute implements Chunk {
@@ -34,11 +35,13 @@ export class CkRoute implements Chunk {
   }
 
   private path(req: Request | RouteRequest) {
-    return isRouteRequest(req) ? (
+    const path = isRouteRequest(req) ? (
       req.rest()
     ) : (
       req.head().uri
     );
+
+    return new SlashedString(path).read();
   }
 }
 

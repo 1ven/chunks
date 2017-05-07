@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as UrlPattern from 'url-pattern';
+import { SlashedString } from '../SlashedString';
 
 // TODO: write tests
 export class Route {
@@ -16,7 +17,9 @@ export class Route {
   }
 
   private parser() {
-    return new UrlPattern(this.template);
+    return new UrlPattern(
+      new SlashedString(this.template).read()
+    );
   }
 
   private match() {
