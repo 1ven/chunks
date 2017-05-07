@@ -1,6 +1,7 @@
+import * as _ from 'lodash';
 import { PlainObject } from '../types';
 
-interface Request {
+export interface Request {
   head(): RequestHead,
   body(): RequestBody,
 }
@@ -14,7 +15,7 @@ export type RequestHead = {
 
 export type RequestBody = string;
 
-export {
-  Request,
+export function isRequest(arg): arg is Request {
+  return !_.isPlainObject(arg) && !!arg.head && !!arg.body;
 }
 

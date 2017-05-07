@@ -1,4 +1,15 @@
-import { FtBasic, BkBasic, BkSafe, RsJson, HttpError, CkFork, CkRegEx, CkMethods } from './src';
+import {
+  FtBasic,
+  BkBasic,
+  BkSafe,
+  RsJson,
+  HttpError,
+  CkFork,
+  CkRoute,
+  CkMethods,
+  RouteChunk,
+  RouteRequest,
+} from './src';
 
 class Index {
   act(req) {
@@ -10,8 +21,8 @@ class Index {
   }
 }
 
-class Test {
-  act(req) {
+class Test implements RouteChunk {
+  act(req: RouteRequest) {
     return Promise.resolve(new RsJson({
       page: 'test',
     }));
@@ -22,8 +33,10 @@ new FtBasic(
   new BkSafe(
     new BkBasic(
       new CkFork(
-        new CkRegEx('/', new CkMethods('GET, POST', new Index())),
-        new CkRegEx('/test', new Test()),
+        new CkRoute('/', new CkMethods('GET, POST', new Index())),
+        new CkRoute('/test/:id*', (
+          new CkRoute('/hello', new Test())
+        )),
       ),
     ),
   ),

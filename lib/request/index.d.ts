@@ -1,5 +1,5 @@
 import { PlainObject } from '../types';
-interface Request {
+export interface Request {
     head(): RequestHead;
     body(): RequestBody;
 }
@@ -9,4 +9,4 @@ export declare type RequestHead = {
     headers?: PlainObject;
 };
 export declare type RequestBody = string;
-export { Request };
+export declare function isRequest(arg: any): arg is Request;

@@ -3,3 +3,7 @@ declare module 'http-string-parser' {
   export = value;
 }
 
+declare module 'url-pattern' {
+  const value: any;
+  export = value;
+}

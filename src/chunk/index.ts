@@ -10,7 +10,7 @@ function isChunk(arg): arg is Chunk {
 }
 
 export { CkFork } from './CkFork';
-export { CkRegEx } from './CkRegEx';
+export { CkRoute } from './CkRoute';
 export { CkMethods } from './CkMethods';
 
 export {

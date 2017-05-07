@@ -5,6 +5,6 @@ interface Chunk {
 }
 declare function isChunk(arg: any): arg is Chunk;
 export { CkFork } from './CkFork';
-export { CkRegEx } from './CkRegEx';
+export { CkRoute } from './CkRoute';
 export { CkMethods } from './CkMethods';
 export { Chunk, isChunk };
