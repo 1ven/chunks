@@ -6,7 +6,7 @@ export { RouteRequest } from './request/RqMatched';
 export { Response, ResponseHead } from './response';
 export { Front, Back } from './http';
 export { Parsed } from './request/parsed';
-export { PlainObject, PlainData } from './types';
+export { PlainObject, PlainData, isPlainData } from './types';
 
 export { HttpError } from './http/HttpError';
 
