@@ -1,6 +1,6 @@
 import * as http from 'http';
 import * as _ from 'lodash';
-import { Response, ResponseBody } from '../response';
+import { Response, ResponseBody, isEmptyResponseBody } from '../response';
 import { JsonBody, XmlBody, RawBody } from './body';
 
 class RawResponse {
@@ -39,7 +39,7 @@ class RawResponse {
       'xml': XmlBody,
     };
 
-    if (_.isNull(body)) {
+    if (isEmptyResponseBody(body)) {
       return '';
     }
 

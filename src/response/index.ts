@@ -11,18 +11,25 @@ export type ResponseHead = {
   headers?: PlainObject,
 }
 
-export type ResponseBody = PlainData | null;
+export type ResponseBody = PlainData | EmptyResponseBody;
+
+export type EmptyResponseBody = null;
 
 function isResponse(arg): arg is Response {
   return !_.isPlainObject(arg) && !!arg.head && !!arg.body;
 }
 
 function isResponseBody(arg): arg is ResponseBody {
-  return isPlainData(arg) || _.isNull(arg);
+  return isPlainData(arg) || isEmptyResponseBody(arg);
+}
+
+function isEmptyResponseBody(arg): arg is EmptyResponseBody {
+  return _.isNull(arg);
 }
 
 export {
   Response,
   isResponse,
   isResponseBody,
+  isEmptyResponseBody,
 }
