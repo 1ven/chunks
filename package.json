@@ -1,6 +1,6 @@
 {
   "name": "chunks",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "Node.JS web framework",
   "main": "lib/index.js",
   "scripts": {
