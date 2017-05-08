@@ -3,7 +3,7 @@ export { Chunk } from './chunk';
 export { RouteChunk } from './chunk/CkRoute';
 export { Request, RequestHead } from './request';
 export { RouteRequest } from './request/RqMatched';
-export { Response, ResponseHead } from './response';
+export { Response, ResponseHead, isResponse } from './response';
 export { Front, Back } from './http';
 export { Parsed } from './request/parsed';
 export { PlainObject, PlainData, isPlainData } from './types';
