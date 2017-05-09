@@ -13,10 +13,8 @@ import {
 
 class Index {
   act(req) {
-    return new Promise((resolve) => {
-      resolve(new RsJson({
-        page: 'index',
-      }));
+    return new Promise((resolve, reject) => {
+      throw new Error('test');
     });
   }
 }
@@ -32,15 +30,7 @@ class Test implements RouteChunk {
 new FtBasic(
   new BkSafe(
     new BkBasic(
-      new CkFork(
-        new CkRoute('/', new CkMethods('GET, POST', new Index())),
-        new CkRoute('/tickets*', new CkFork(
-          new CkRoute('/', new Test())
-        )),
-        /* new CkRoute('/test/:id*', ( */
-        /*   new CkRoute('/hello', new Test()) */
-        /* )), */
-      ),
+      new Index()
     ),
   ),
 ).start(3000, () => console.log('Server is listening at 3000'));
