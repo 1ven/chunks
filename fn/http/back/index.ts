@@ -8,9 +8,9 @@ import { Response } from '../../response';
 export function makeListener(chunk: Chunk): Listener {
   return function(socket: net.Socket) {
     socket.setEncoding('utf8');
-    socket.on('data', (raw: string) => {
+    socket.on('data', async (raw: string) => {
       const req: Request = parse(raw);
-      const res: Response = chunk(req);
+      const res: Response = await chunk(req);
 
       socket.end(make(res), 'utf8');
     });
