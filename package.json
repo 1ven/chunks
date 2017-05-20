@@ -39,8 +39,10 @@
     "typescript": "^2.2.2"
   },
   "dependencies": {
+    "@types/ramda": "0.0.9",
     "http-string-parser": "0.0.5",
     "lodash": "^4.17.4",
+    "ramda": "^0.23.0",
     "url-pattern": "^1.0.3"
   }
 }
