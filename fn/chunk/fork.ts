@@ -1,16 +1,19 @@
 import R = require('ramda');
 import { Request } from '../request';
 import { Response, status } from '../response';
-import { Chunk } from '../chunk';
+import { Chunk, makeResponse } from '.';
 
 export const fork = (...chunks: Array<Chunk>) => (
-  (req: Request): Response => (
+  (req: Request): Promise<Response> => (
     R.reduce(
-      (acc: Response, chunk: Chunk) => {
-        const res = chunk(req);
-        return res.status === 404 ? acc : res;
+      async (acc: Promise<Response>, chunk: Chunk) => {
+        const res = await chunk(req);
+
+        return res.status === 404 ? acc : res
       },
-      status(404),
+      makeResponse(
+        status(404),
+      ),
       chunks
     )
   )

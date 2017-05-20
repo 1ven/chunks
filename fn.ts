@@ -141,17 +141,17 @@ import {
   createServer,
 } from './fn/';
 
-import { fork, path } from './fn/chunk';
+import { fork, path, makeResponse } from './fn/chunk';
 import { Request } from './fn/request';
 import { Response, json } from './fn/response';
 
-const Index = (): Response => {
+const Index = (): Promise<Response> => {
   throw new Error('test');
 };
 
-const Contacts = (): Response => json({
+const Contacts = (): Promise<Response> => makeResponse(json({
   page: 'contacts',
-});
+}));
 
 const server = createServer(
   fork(
