@@ -1,18 +1,34 @@
 import net = require('net');
+import R = require('ramda');
 import { make } from './response';
 import { Chunk } from '../../chunk';
 import { Request } from '../../request';
-import { Response, status } from '../../response';
+import { Response, status, body } from '../../response';
 import { Listener } from './';
 
 export function safe(listener: Listener) {
-  return function(socket: net.Socket) {
+  return async function(socket: net.Socket) {
     try {
-      console.log('try')
-      listener(socket);
+      return await listener(socket);
     } catch(err) {
-      console.log('catch')
-      socket.end(make(status(500)));
+      const withStatus = status(500);
+      const res = process.env.NODE_ENV === 'production' ? (
+        withStatus
+      ) : (
+        R.merge(
+          body(getMessage(err)),
+          withStatus,
+        )
+      );
+      socket.end(make(res));
     }
   }
 }
+
+const getMessage = (err: any): string => (
+  !err ? (
+    'Empty error'
+  ) : (
+    err.stack || err.message || JSON.stringify(err)
+  )
+)
