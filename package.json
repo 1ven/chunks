@@ -7,7 +7,7 @@
     "build": "tsc --project .",
     "lint": "tslint --project .",
     "clean": "rimraf ./lib",
-    "test": "mocha --compilers ts:ts-node/register --recursive -R min  ./tests",
+    "test": "jest",
     "preversion": "npm run build",
     "postversion": "git push && git push --tags"
   },
@@ -28,21 +28,34 @@
   "homepage": "https://github.com/1ven/chunks#readme",
   "devDependencies": {
     "@types/expect": "^1.20.1",
+    "@types/jest": "^19.2.3",
     "@types/lodash": "^4.14.62",
-    "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.13",
+    "@types/ramda": "0.0.9",
     "expect": "^1.20.2",
-    "mocha": "^3.2.0",
+    "jest": "^20.0.4",
     "rimraf": "^2.6.1",
+    "ts-jest": "^20.0.4",
     "ts-node": "^3.0.2",
     "tslint": "^5.1.0",
     "typescript": "^2.2.2"
   },
   "dependencies": {
-    "@types/ramda": "0.0.9",
     "http-string-parser": "0.0.5",
     "lodash": "^4.17.4",
     "ramda": "^0.23.0",
+    "ramda-fantasy": "^0.8.0",
     "url-pattern": "^1.0.3"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }

@@ -4,6 +4,12 @@ declare module 'http-string-parser' {
 }
 
 declare module 'url-pattern' {
-  const value: any;
-  export = value;
+  type Result = {
+    [key: string]: string,
+    _: string,
+  } | null
 }
+
+// declare module 'ramda-fantasy' {
+//   type Maybe<Result> = 
+// }
